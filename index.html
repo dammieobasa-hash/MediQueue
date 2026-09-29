@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MediQueue hospital queue management prototype" />
+  <title>MediQueue | Care, without the wait</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+ <header class="topbar">
+  <a class="brand" href="#home" aria-label="MediQueue home">
+    <span class="brand-mark">+</span>
+    Medi<span>Queue</span>
+  </a>
+
+  <nav>
+    <a href="#how-it-works">How it works</a>
+    <a href="#services">Services</a>
+    <button class="nav-button" id="trackStatus">
+      Track my queue
+    </button>
+  </nav>
+
+  <div class="header-actions">
+    <a class="login-link" href="login.php">Log in</a>
+  </div>
+</header>
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> A calmer way to receive care</p>
+        <h1>Your time matters.<br /><em>So does your health.</em></h1>
+        <p class="hero-text">Join your hospital queue digitally, track your place in real time, and arrive when care is
+          ready for you.</p>
+        <div class="hero-actions"><button class="primary-button" id="getStarted">Join a queue <b>→</b></button><button
+            class="text-button" id="viewDemo">See how it works <span>▶</span></button></div>
+        <div class="trust-row">
+          <div class="avatar-stack"><i>MK</i><i>OA</i><i>TE</i></div>
+          <p>Trusted by <strong>2,400+ patients</strong><br />today across Lagos.</p>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Queue status preview">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="queue-preview">
+          <div class="preview-head">
+            <div><span class="tiny-label">YOUR QUEUE STATUS</span>
+              <h3>General Consultation</h3>
+            </div><span class="live-dot">Live</span>
+          </div>
+          <div class="ticket"><span>Your number</span><strong id="heroNumber">A25</strong><small>You're doing great.
+              Almost there!</small></div>
+          <div class="queue-metrics">
+            <div><span>Now serving</span><b id="heroServing">A17</b></div>
+            <div><span>People ahead</span><b id="heroAhead">8</b></div>
+          </div>
+          <div class="progress"><span id="heroProgress"></span></div>
+          <p class="approaching">● Your turn is approaching</p>
+        </div>
+        <div class="floating-card notification-card"><span>🔔</span>
+          <div><b>Heads up!</b><small>You're next in about 12 min.</small></div>
+        </div>
+        <div class="floating-card location-card"><span>✦</span>
+          <div><b>No standing in line</b><small>Wait wherever you feel comfortable.</small></div>
+        </div>
+      </div>  
+    </section>
+
+    <section class="service-section" id="services">
+      <div class="section-intro">
+        <p class="eyebrow"><span></span> FIND THE RIGHT CARE</p>
+        <h2>What do you need help with?</h2>
+        <p>Choose a service and get a digital queue number in seconds.</p>
+      </div>
+      <div class="service-grid" id="serviceGrid"></div>
+    </section>
+
+    <section class="how-section" id="how-it-works">
+      <div>
+        <p class="eyebrow"><span></span> SIMPLE BY DESIGN</p>
+        <h2>Care that moves<br />at your pace.</h2>
+      </div>
+      <div class="steps">
+        <article><span>01</span>
+          <div class="step-icon">⌁</div>
+          <h3>Choose your service</h3>
+          <p>Tell us what you need, from a quick consultation to a laboratory visit.</p>
+        </article>
+        <article><span>02</span>
+          <div class="step-icon">⌁</div>
+          <h3>Get your queue number</h3>
+          <p>We place you in line instantly and show exactly where you stand.</p>
+        </article>
+        <article><span>03</span>
+          <div class="step-icon">⌁</div>
+          <h3>Arrive when it matters</h3>
+          <p>Receive a gentle alert when your turn is getting close.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div>
+        <p class="eyebrow"><span></span> READY WHEN YOU ARE</p>
+        <h2>Less waiting.<br /><em>More living.</em></h2>
+      </div><button class="light-button" id="ctaJoin">Get your queue number <b>→</b></button>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="patientModal" role="dialog" aria-modal="true" aria-labelledby="patientTitle">
+    <div class="modal-card"><button class="close" data-close="patientModal">×</button>
+      <p class="eyebrow"><span></span> PATIENT CHECK-IN</p>
+      <h2 id="patientTitle">Get your queue number</h2>
+      <p class="muted">Choose a service. We’ll reserve your place immediately.</p>
+      <form id="queueForm"><label>Service <select id="serviceSelect" required></select></label><label>Your name <input
+            id="patientName" maxlength="40" required placeholder="e.g. Ada Okafor" /></label><button class="primary-button full" type="button" id="joinQueueButton">
+    Join queue <b>→</b>
+</button></form>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="statusModal" role="dialog" aria-modal="true" aria-labelledby="statusTitle">
+    <div class="modal-card status-card"><button class="close" data-close="statusModal">×</button>
+      <p class="eyebrow"><span></span> YOU'RE CHECKED IN</p>
+      <h2 id="statusTitle">Your queue status</h2>
+      <div class="status-ticket">
+        <p id="statusDepartment">General Consultation</p><strong id="statusNumber">A25</strong><span>Your queue
+          number</span>
+      </div>
+      <div class="status-data">
+        <div><small>Now serving</small><b id="statusServing">A17</b></div>
+        <div><small>People ahead</small><b id="statusAhead">8</b></div>
+        <div><small>Status</small><b class="waiting" id="statusState">WAITING</b></div>
+      </div>
+      <p class="notification-message" id="statusMessage">We’ll let you know when your turn is close. Feel free to wait
+        comfortably.</p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="staffModal" role="dialog" aria-modal="true" aria-labelledby="staffTitle">
+    <div class="modal-card staff-card"><button class="close" data-close="staffModal">×</button>
+      <div class="staff-heading">
+        <div>
+          <p class="eyebrow"><span></span> STAFF CONSOLE</p>
+          <h2 id="staffTitle">Queue management</h2>
+        </div><select id="staffService"></select>
+      </div>
+      <div class="staff-now"><span>NOW SERVING</span><strong id="staffServing">A17</strong><button
+          class="primary-button" id="callNext">Call next <b>→</b></button></div>
+      <div class="queue-list-head"><span>Patients waiting</span><span id="queueCount">8 in queue</span></div>
+      <ul class="queue-list" id="queueList"></ul>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>

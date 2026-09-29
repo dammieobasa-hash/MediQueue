@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="MediQueue staff queue management"
+  >
+
+  <title>MediQueue | Staff Console</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="staff.css">
+
+</head>
+
+
+<body>
+
+  <header class="staff-topbar">
+
+    <a
+      href="../index.html"
+      class="brand"
+    >
+
+      <span class="brand-mark">+</span>
+      Medi<span>Queue</span>
+
+    </a>
+
+
+    <div class="staff-title">
+
+      <span>STAFF CONSOLE</span>
+
+      <h1>Doctor Queue Management</h1>
+
+    </div>
+
+
+    <a
+      href="../index.html"
+      class="back-button"
+    >
+      ← Patient site
+    </a>
+
+  </header>
+
+
+  <main class="staff-container">
+
+
+    <!-- DOCTOR SELECTION -->
+
+    <section class="doctor-section">
+
+      <div>
+
+        <p class="eyebrow">
+          DOCTOR ACCESS
+        </p>
+
+        <h2>Welcome to the staff console</h2>
+
+        <p class="subtitle">
+          Select your department and doctor to manage the queue.
+        </p>
+
+      </div>
+
+
+      <div class="controls">
+
+        <label>
+
+          Department
+
+          <select id="departmentSelect">
+
+            <option value="Dental Care">
+              Dentistry
+            </option>
+
+            <option value="General Consultation">
+              General Consultation
+            </option>
+
+            <option value="Pediatrics">
+              Pediatrics
+            </option>
+
+            <option value="Specialist Clinic">
+              Specialist Clinic
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label>
+
+          Doctor
+
+          <select id="doctorSelect"></select>
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- DOCTOR CARD -->
+
+    <section class="doctor-card">
+
+      <div class="doctor-info">
+
+        <div class="doctor-avatar" id="doctorAvatar">
+          SA
+        </div>
+
+        <div>
+
+          <span class="doctor-label">
+            CURRENT DOCTOR
+          </span>
+
+          <h2 id="doctorName">
+            Dr. Sarah Adeyemi
+          </h2>
+
+          <p id="doctorDepartment">
+            Dentistry
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="doctor-status">
+
+        <span class="status-dot"></span>
+
+        <span>Online</span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CURRENT PATIENT -->
+
+    <section class="now-serving">
+
+      <div class="serving-info">
+
+        <span class="section-label">
+          NOW SERVING
+        </span>
+
+        <strong id="currentNumber">
+          D0
+        </strong>
+
+        <h3 id="currentPatient">
+          No patient currently being attended to
+        </h3>
+
+      </div>
+
+
+      <button
+        class="call-next"
+        id="callNext"
+      >
+
+        Call Next
+        <span>→</span>
+
+      </button>
+
+    </section>
+
+
+
+    <!-- QUEUE -->
+
+    <section class="queue-section">
+
+      <div class="queue-heading">
+
+        <div>
+
+          <span class="section-label">
+            PATIENT QUEUE
+          </span>
+
+          <h2>Patients waiting</h2>
+
+        </div>
+
+
+        <div class="queue-count">
+
+          <strong id="queueCount">
+            0
+          </strong>
+
+          <span>
+            patients waiting
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="queue-list"
+        id="queueList"
+      ></div>
+
+    </section>
+
+
+
+    <!-- DOCTORS -->
+
+    <section class="doctors-section">
+
+      <div class="queue-heading">
+
+        <div>
+
+          <span class="section-label">
+            DEPARTMENT
+          </span>
+
+          <h2>Doctors</h2>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="doctors-grid"
+        id="doctorsGrid"
+      ></div>
+
+    </section>
+
+
+  </main>
+
+
+  <script src="staff.js"></script>
+
+</body>
+
+</html>
